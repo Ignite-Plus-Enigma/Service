@@ -15,14 +15,21 @@ public class BooksController {
     @Autowired
     private BookService bookService;
 
-        @GetMapping("/books")
-        public ResponseEntity <String >getBooks() {
-            return ResponseEntity.ok().body((bookService.listBooks().toString()));
-        }
-            @GetMapping("/search={key}")
-            public ResponseEntity<String> findBook(@PathVariable String key) {
-                return ResponseEntity.ok().body(bookService.searchBooks(key).toString());
-            }
+    @GetMapping("/books")
+    public ResponseEntity<String> getBooks() {
+        return ResponseEntity.ok().body((bookService.listBooks().toString()));
     }
+
+    @GetMapping("/books/{id}")
+    public ResponseEntity<String> getBookbyid(@PathVariable String id) {
+        return ResponseEntity.ok().body((bookService.getById(id).toString()));
+    }
+
+
+    @GetMapping("/search={key}")
+    public ResponseEntity<String> findBook(@PathVariable String key) {
+        return ResponseEntity.ok().body(bookService.searchBooks(key).toString());
+    }
+}
 
 
